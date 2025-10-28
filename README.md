@@ -25,5 +25,5 @@ Pull requests and discussions are welcome — feel free to add new algorithms or
 by **Thomas H. Cormen**, **Charles E. Leiserson**, **Ronald L. Rivest**, and **Clifford Stein**
 
 ## 🛡️ License
-This project is licensed under the <a href=""> MIT License.</a>
+This project is licensed under the <a href="https://github.com/MohammadTaghipour/Algorithms-CLRS/blob/master/LICENSE.txt"> MIT License.</a>
 
