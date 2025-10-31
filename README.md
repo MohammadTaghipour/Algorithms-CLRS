@@ -10,10 +10,9 @@ Each implementation aims to be:
 - **Educational**, matching the logic from the book
 
 ## 🧠 Topics Covered
-
-- Sorting algorithms (Insertion)
-
-- Will be added soon...
+- Arrays and Basic Operations (sum)
+- Sorting algorithms (Insertion, Merge Sort)
+- More topics coming soon...
 
 ## 🧩 Contributing
 
