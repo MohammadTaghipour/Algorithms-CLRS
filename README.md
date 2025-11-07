@@ -10,7 +10,7 @@ Each implementation aims to be:
 - **Educational**, matching the logic from the book
 
 ## 🧠 Topics Covered
-- Arrays and Basic Operations (**sum**)
+- Arrays and Basic Operations (**sum**, **Matrix Multiply**)
 - Sorting algorithms (**Insertion**, **Merge Sort**)
 - More topics coming soon...
 
