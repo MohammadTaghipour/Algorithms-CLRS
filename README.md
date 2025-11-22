@@ -11,7 +11,7 @@ Each implementation aims to be:
 
 ## 🧠 Topics Covered
 - Arrays and Basic Operations (**sum**, **Matrix Multiply**)
-- Sorting algorithms (**Insertion**, **Merge Sort**, **Quicksort**)
+- Sorting algorithms (**Insertion**, **Merge Sort**, **Quicksort**, **Randomized Quicksort**)
 - Divide-and-Conquer algorithms(**Matrix Multiply**)
 - More topics coming soon...
 
