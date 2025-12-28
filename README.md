@@ -14,7 +14,7 @@ Each implementation aims to be:
 - Sorting algorithms (**Insertion**, **Merge Sort**, **Quicksort**, **Randomized Quicksort**)
 - Divide-and-Conquer algorithms (**Matrix Multiply**)
 - Elementary Data Structures (**Stack**, **Queue**, **LinkedList**)
-- Greedy algorithms (**Activity Selector**, **Fractional Knapsack**)
+- Greedy algorithms (**Activity Selector**, **Fractional Knapsack**, **Offline Caching**)
 - More topics coming soon...
 
 ## 🧩 Contributing
