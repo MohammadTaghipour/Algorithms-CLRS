@@ -1,69 +1,27 @@
 package main
 
-type Heap struct {
-	data       []int
-	heapSize   int
-	betterThan func(a, b int) bool
-}
+// HeapSort sorts the given slice of integers in ascending order
+// using the heapsort algorithm.
+//
+// This algorithm works in two main phases:
+// 1. Build a max-heap from the input array so that the largest element
+//    is at the root (index 0).
+// 2. Repeatedly swap the root of the heap with the last element of the
+//    heap, reduce the heap size by one, and restore the max-heap property
+//    by calling heapify on the root.
+//
+// Time complexity (worst case): O(n log n)
+// Space complexity: O(1) – in-place sorting
+func HeapSort(arr []int) {
+	h := BuildMaxHeap(arr)
+	for i := h.heapSize - 1; i >= 1; i-- {
+		// Move current maximum to its final position
+		h.data[0], h.data[i] = h.data[i], h.data[0]
 
-func parent(i int) int {
-	return (i - 1) / 2
-}
+		// Reduce heap size to exclude the sorted element
+		h.heapSize--
 
-func left(i int) int {
-	return 2*i + 1
-}
-
-func right(i int) int {
-	return 2*i + 2
-}
-
-func (h *Heap) heapify(i int) {
-	l := left(i)
-	r := right(i)
-
-	best := i
-
-	if l < h.heapSize && h.betterThan(h.data[l], h.data[best]) {
-		best = l
+		// Restore the max-heap property
+		h.heapify(0)
 	}
-	if r < h.heapSize && h.betterThan(h.data[r], h.data[best]) {
-		best = r
-	}
-
-	if best != i {
-		h.data[i], h.data[best] = h.data[best], h.data[i]
-		h.heapify(best)
-	}
-}
-
-func BuildMaxHeap(arr []int) *Heap {
-	h := &Heap{
-		data:     arr,
-		heapSize: len(arr),
-		betterThan: func(a, b int) bool {
-			return a > b
-		},
-	}
-
-	for i := h.heapSize/2 - 1; i >= 0; i-- {
-		h.heapify(i)
-	}
-
-	return h
-}
-
-func BuildMinHeap(arr []int) *Heap {
-	h := &Heap{
-		data:     arr,
-		heapSize: len(arr),
-		betterThan: func(a, b int) bool {
-			return a < b
-		},
-	}
-
-	for i := h.heapSize/2 - 1; i >= 0; i-- {
-		h.heapify(i)
-	}
-	return h
 }
