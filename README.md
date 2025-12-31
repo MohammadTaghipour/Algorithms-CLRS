@@ -13,7 +13,7 @@ Each implementation aims to be:
 - Arrays and Basic Operations (**sum**, **Matrix Multiply**)
 - Sorting algorithms (**Insertion**, **Merge Sort**, **Quicksort**, **Randomized Quicksort**)
 - Divide-and-Conquer algorithms (**Matrix Multiply**)
-- Elementary Data Structures (**Stack**, **Queue**, **LinkedList**)
+- Elementary Data Structures (**Stack**, **Queue**, **LinkedList**, **Heaps(min/max)**)
 - Greedy algorithms (**Activity Selector**, **Fractional Knapsack**, **Offline Caching**)
 - More topics coming soon...
 
