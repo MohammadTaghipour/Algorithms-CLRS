@@ -1,13 +1,17 @@
 package main
 
+import (
+	"errors"
+)
+
 // Heap represents a binary heap data structure that can act as either
 // a max-heap or a min-heap, depending on the comparison function.
 //
 // Fields:
-// - data: the underlying slice storing the heap elements
-// - heapSize: the number of elements currently in the heap
-// - betterThan: a comparison function that defines the heap property
-//   (e.g., a > b for max-heap, a < b for min-heap)
+//   - data: the underlying slice storing the heap elements
+//   - heapSize: the number of elements currently in the heap
+//   - betterThan: a comparison function that defines the heap property
+//     (e.g., a > b for max-heap, a < b for min-heap)
 type Heap struct {
 	data       []int
 	heapSize   int
@@ -106,4 +110,100 @@ func BuildMinHeap(arr []int) *Heap {
 		h.heapify(i)
 	}
 	return h
+}
+
+// Peek returns the root element of the heap without removing it.
+//
+// For a max-heap, this returns the maximum element.
+// For a min-heap, this returns the minimum element.
+//
+// This operation does NOT modify the heap structure.
+//
+// Time complexity: O(1)
+// Space complexity: O(1)
+func (h *Heap) Peek() (error, int) {
+	if h.heapSize == 0 {
+		return errors.New("heap underflow error"), 0
+	}
+	return nil, h.data[0]
+}
+
+// ExtractRoot removes and returns the root element of the heap.
+//
+// In a max-heap, this corresponds to EXTRACT-MAX.
+// In a min-heap, this corresponds to EXTRACT-MIN.
+//
+// Algorithm (CLRS-style):
+// 1. Save the root value.
+// 2. Move the last element of the heap to the root position.
+// 3. Decrease heap size.
+// 4. Call heapify(0) to restore the heap property.
+//
+// Time complexity: O(log n)
+// Space complexity: O(1)
+func (h *Heap) ExtractRoot() (error, int) {
+	if h.heapSize == 0 {
+		return errors.New("heap underflow error"), 0
+	}
+	root := h.data[0]
+	h.data[0] = h.data[h.heapSize-1]
+	h.heapSize--
+	h.heapify(0)
+	return nil, root
+}
+
+// Insert adds a new key into the heap.
+//
+// The key is first appended at the end of the array to maintain
+// the complete binary tree structure. Then, a "bubble-up"
+// (heap-increase-key / heap-decrease-key behavior) is performed
+// to restore the heap property.
+//
+// This operation works for both max-heaps and min-heaps,
+// depending on the betterThan comparison function.
+//
+// Time complexity: O(log n)
+// Space complexity: O(1) amortized
+func (h *Heap) Insert(key int) {
+	h.data = append(h.data, key)
+	h.heapSize++
+	i := h.heapSize - 1
+
+	// Bubble up
+	for i > 0 && h.betterThan(h.data[i], h.data[parent(i)]) {
+		h.data[i], h.data[parent(i)] = h.data[parent(i)], h.data[i]
+		i = parent(i)
+	}
+}
+
+// UpdateKey updates the value of the key at index i and restores
+// the heap property.
+//
+// If the new key has higher priority than the old key
+// (greater in a max-heap, smaller in a min-heap),
+// the element is bubbled up toward the root.
+//
+// Otherwise, the element may violate the heap property with
+// its children, so heapify is called to bubble it down.
+//
+// This method corresponds to:
+// - INCREASE-KEY in max-priority queues
+// - DECREASE-KEY in min-priority queues
+//
+// Time complexity: O(log n)
+// Space complexity: O(1)
+func (h *Heap) UpdateKey(i, newKey int) {
+	oldKey := h.data[i]
+	h.data[i] = newKey
+
+	if h.betterThan(newKey, oldKey) {
+		// Bubble up
+		for i > 0 && h.betterThan(h.data[i], h.data[parent(i)]) {
+			h.data[i], h.data[parent(i)] = h.data[parent(i)], h.data[i]
+			i = parent(i)
+		}
+	} else {
+		// Bubble down
+		h.heapify(i)
+	}
 }
